@@ -6,6 +6,14 @@ set -o pipefail
 REPO_URL="$1" # e.g. input-output-hk/optparse-applicative
 REV="$2"  # e.g. 7497a29cb998721a9068d5725d49461f2bba0e7a
 
+UNAME=$(uname -s) DATE= TAR= AWK=
+case $UNAME in
+  Darwin )      DATE="gdate"; TAR="gtar"; AWK="gawk";;
+  Linux )       DATE="date" ; TAR="tar" ; AWK="awk" ;;
+  MINGW64_NT* ) UNAME="Windows_NT"
+                DATE="date" ; TAR="tar "; AWK="awk ";;
+esac
+
 if ! shift 2; then
   echo "Usage: $0 REPO_URL REV [SUBDIR...]"
   exit 1
@@ -45,7 +53,7 @@ do_package() {
   PKG_NAME=$(basename "$CABAL_FILE" .cabal)
 
   local PKG_VERSION
-  PKG_VERSION=$(awk -v IGNORECASE=1 -e '/^version/ { print $2 }' "$CABAL_FILE")
+  PKG_VERSION=$("$AWK" -v IGNORECASE=1 -e '/^version/ { print $2 }' "$CABAL_FILE")
 
   local PKG_ID="$PKG_NAME-$PKG_VERSION"
 
@@ -74,7 +82,7 @@ do_package() {
 }
 
 TAR_URL="$REPO_URL/tarball/$REV"
-TIMESTAMP=$(date --utc +%Y-%m-%dT%H:%M:%SZ)
+TIMESTAMP=$("$DATE" --utc +%Y-%m-%dT%H:%M:%SZ)
 
 WORKDIR=$(mktemp -d)
 log "Work directory is $WORKDIR"
@@ -87,7 +95,7 @@ if ! curl --fail --silent --location --remote-name "$TAR_URL"; then
   exit 1
 fi
 
-tar xzf * --strip-component=1 --wildcards '**/*.cabal'
+"$TAR" xzf * --strip-component=1 --wildcards '**/*.cabal'
 popd
 
 if [[ -z $SUBDIRS ]]; then
