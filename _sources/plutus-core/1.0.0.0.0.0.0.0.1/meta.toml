@@ -1,0 +1,4 @@
+timestamp = 2022-09-16T07:49:36Z
+url = 'https://github.com/input-output-hk/plutus/tarball/9c7318b67b7ab0c589f6a2d1bb2c6a5835b2db79'
+subdir = 'plutus-core'
+force-version = true
