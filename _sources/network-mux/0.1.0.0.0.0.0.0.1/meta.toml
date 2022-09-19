@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T04:38:20Z
+url = 'https://github.com/input-output-hk/ouroboros-network/tarball/b3d225e96a163347cf6c5182a834c89499363bd9'
+subdir = './network-mux'
+force-version = true
