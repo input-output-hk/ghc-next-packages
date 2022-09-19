@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T02:49:28Z
+url = 'https://github.com/input-output-hk/cardano-base/tarball/c0248abc079db8c91a4d78a6eb315bee4b123abe'
+subdir = 'base-deriving-via'
+force-version = true
