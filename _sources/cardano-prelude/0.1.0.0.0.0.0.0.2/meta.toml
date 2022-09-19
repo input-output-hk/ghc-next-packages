@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T02:51:03Z
+url = 'http://github.com/input-output-hk/cardano-prelude/tarball/6385c19ad68424c6d789c37fb21116e6f362e1e3'
+subdir = 'cardano-prelude'
+force-version = true
