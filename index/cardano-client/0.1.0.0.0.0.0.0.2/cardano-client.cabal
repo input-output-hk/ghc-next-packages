@@ -1,0 +1,26 @@
+cabal-version: >=1.10
+name:          cardano-client
+version:       0.1.0.0.0.0.0.0.2
+license:       Apache-2.0
+license-file:  LICENSE NOTICE
+copyright:     2019 Input Output (Hong Kong) Ltd.
+maintainer:    operations@iohk.io
+author:        IOHK Engineering Team
+synopsis:      An API for ouroboros-network
+category:      Network
+build-type:    Simple
+
+library
+    exposed-modules:  Cardano.Client.Subscription
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    ghc-options:      -Wall -Wno-unticked-promoted-constructors
+    build-depends:
+        base,
+        bytestring >=0.10 && <0.11,
+        containers,
+        io-classes,
+        ouroboros-consensus,
+        ouroboros-network,
+        ouroboros-network-framework,
+        network-mux
