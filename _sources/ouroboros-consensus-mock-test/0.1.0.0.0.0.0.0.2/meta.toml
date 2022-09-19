@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T05:23:19Z
+url = 'https://github.com/input-output-hk/ouroboros-network/tarball/f23de88f53fbf263a9f13564e27987dd9e4f2f6a'
+subdir = './ouroboros-consensus-mock-test'
+force-version = true
