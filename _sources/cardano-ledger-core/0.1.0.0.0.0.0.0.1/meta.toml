@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T02:26:48Z
+url = 'https://github.com/input-output-hk/cardano-ledger/tarball/b45f800d27c2637e0ae7a33e15acc09ea0b74fe9'
+subdir = 'libs/cardano-ledger-core'
+force-version = true
