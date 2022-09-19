@@ -1,0 +1,69 @@
+cabal-version:      >=1.10
+name:               ntp-client
+version:            0.0.1.0.0.0.0.1
+license:            Apache-2.0
+license-file:       LICENSE NOTICE
+category:           Network
+build-type:         Simple
+extra-source-files: README.md
+
+flag demo
+    description: Build a demo application
+    manual:      True
+
+library
+    exposed-modules:    Network.NTP.Client
+    hs-source-dirs:     src
+    other-modules:
+        Network.NTP.Client.Packet
+        Network.NTP.Client.Query
+
+    default-language:   Haskell2010
+    default-extensions: GeneralizedNewtypeDeriving
+    ghc-options:
+        -Wall -Wcompat -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wpartial-fields -Widentities
+        -Wredundant-constraints
+
+    build-depends:
+        async >=2.2 && <2.3,
+        base >=4.9 && <4.15,
+        binary >=0.8 && <0.11,
+        bytestring >=0.10 && <0.11,
+        contra-tracer >=0.1 && <0.2,
+        network >=3.1.2 && <3.2,
+        stm >=2.4 && <2.6,
+        time >=1.9.1 && <1.11,
+        Win32-network >=0.1 && <0.2
+
+executable demo-ntp-client
+    main-is:          Main.hs
+    hs-source-dirs:   demo
+    default-language: Haskell2010
+    ghc-options:      -Wall -threaded
+    build-depends:
+        async >=2.2 && <2.3,
+        base >=4.9 && <4.15,
+        contra-tracer >=0.1 && <0.2,
+        Win32-network >=0.1 && <0.2,
+        ntp-client
+
+    if flag(demo)
+
+    else
+        buildable: False
+
+test-suite test
+    type:             exitcode-stdio-1.0
+    main-is:          Test.hs
+    hs-source-dirs:   test src
+    other-modules:    Network.NTP.Client.Packet
+    default-language: Haskell2010
+    ghc-options:      -Wall
+    build-depends:
+        base >=4.9 && <4.15,
+        binary >=0.8 && <0.11,
+        time >=1.9.1 && <1.11,
+        QuickCheck,
+        tasty,
+        tasty-quickcheck
