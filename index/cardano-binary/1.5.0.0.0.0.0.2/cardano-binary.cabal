@@ -1,0 +1,101 @@
+cabal-version:      2.2
+name:               cardano-binary
+version:            1.5.0.0.0.0.0.2
+license:            Apache-2.0
+license-file:       LICENSE NOTICE
+copyright:          2019-2021 IOHK
+maintainer:         operations@iohk.io
+author:             IOHK
+synopsis:           Binary serialization for Cardano
+description:
+    This package includes the binary serialization format for Cardano
+
+category:           Currency
+build-type:         Simple
+extra-source-files: README.md
+
+flag development
+    description: Disable `-Werror`
+    default:     False
+    manual:      True
+
+library
+    exposed-modules:  Cardano.Binary
+    hs-source-dirs:   src
+    other-modules:
+        Cardano.Binary.Annotated
+        Cardano.Binary.Drop
+        Cardano.Binary.Raw
+        Cardano.Binary.ToCBOR
+        Cardano.Binary.FromCBOR
+        Cardano.Binary.Serialize
+        Cardano.Binary.Deserialize
+
+    default-language: Haskell2010
+    ghc-options:
+        -Wall -Wcompat -Wincomplete-record-updates
+        -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
+        -Wunused-packages
+
+    build-depends:
+        base >=4.14 && <4.17,
+        base,
+        aeson,
+        bytestring,
+        cborg >=0.2.2 && <0.3,
+        containers,
+        data-fix,
+        deepseq,
+        formatting,
+        nothunks,
+        primitive,
+        recursion-schemes >=5.1 && <5.3,
+        safe-exceptions,
+        tagged,
+        text,
+        time,
+        vector
+
+    if !flag(development)
+        ghc-options: -Werror
+
+test-suite test
+    type:             exitcode-stdio-1.0
+    main-is:          test.hs
+    hs-source-dirs:   test
+    other-modules:
+        Test.Cardano.Binary.SizeBounds
+        Test.Cardano.Binary.Helpers
+        Test.Cardano.Binary.Helpers.GoldenRoundTrip
+        Test.Cardano.Binary.RoundTrip
+        Test.Cardano.Binary.Serialization
+        Test.Cardano.Binary.Drop
+        Test.Cardano.Binary.Failure
+
+    default-language: Haskell2010
+    ghc-options:
+        -Wall -Wcompat -Wincomplete-record-updates
+        -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
+        -Wunused-packages -threaded -rtsopts
+
+    build-depends:
+        base >=4.14 && <4.17,
+        base,
+        bytestring,
+        cardano-binary,
+        cardano-prelude-test,
+        cborg,
+        containers,
+        formatting,
+        hedgehog,
+        hspec,
+        pretty-show,
+        QuickCheck,
+        quickcheck-instances,
+        tagged,
+        text,
+        time,
+        vector
+
+    if !flag(development)
+        ghc-options: -Werror
