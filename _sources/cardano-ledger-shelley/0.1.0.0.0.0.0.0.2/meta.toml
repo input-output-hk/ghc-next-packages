@@ -1,0 +1,4 @@
+timestamp = 2022-09-19T03:15:13Z
+url = 'https://github.com/input-output-hk/cardano-ledger/tarball/e93eb38e70a7fa471721c1b2f13f7461e25bfe2a'
+subdir = 'eras/shelley/impl'
+force-version = true
