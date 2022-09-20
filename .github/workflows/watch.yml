@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 'check updates'
     steps:
-      - uses: github/checkout@v3
+      - uses: actions/checkout@v3
         with:
           path: _repos/ghc-next-packages
       - uses: input-output-hk/haskell-package-automation@v1
