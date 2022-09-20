@@ -1,0 +1,9 @@
+name: Watch
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    name: 'check updates'
+    steps:
+      - uses: input-output-hk/haskell-package-automation@v1
+      
