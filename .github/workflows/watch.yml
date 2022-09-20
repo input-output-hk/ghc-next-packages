@@ -12,4 +12,13 @@ jobs:
     name: 'check updates'
     steps:
       - uses: input-output-hk/haskell-package-automation@v1
+        with:
+          repos: |
+            git@github.com:input-output-hk/ghc-next-packages
+            https://github.com/input-output-hk/cardano-prelude
+            https://github.com/input-output-hk/cardano-base
+            https://github.com/input-output-hk/cardano-ledger
+            https://github.com/input-output-hk/plutus
+            https://github.com/input-output-hk/ekg-forward
+          
       
