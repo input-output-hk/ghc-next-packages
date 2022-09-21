@@ -1,0 +1,4 @@
+timestamp = 2022-09-21T07:48:14Z
+url = 'https://github.com/input-output-hk/plutus/tarball/9a249416aa5162a27c09f4a9eedd2876a3e32330'
+subdir = './plutus-benchmark'
+force-version = true
