@@ -1,0 +1,129 @@
+cabal-version:   3.0
+name:            plutus-conformance
+version:         1.0.0.0.0.0.0.0.1
+license:         Apache-2.0
+license-file:    LICENSE NOTICE
+maintainer:      marty.stumpf@iohk.io
+author:          Plutus Core Team
+synopsis:        Conformance Test Suite for Plutus Core
+description:     Comprehensive Conformance Test Suite for Plutus Core.
+category:        Language, Plutus, Conformance
+build-type:      Simple
+extra-doc-files: README.md
+
+source-repository head
+    type:     git
+    location: https://github.com/input-output-hk/plutus
+
+library
+    exposed-modules:    PlutusConformance.Common
+    hs-source-dirs:     src
+    default-language:   Haskell2010
+    default-extensions:
+        DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+        DeriveTraversable DerivingStrategies DerivingVia ExplicitForAll
+        FlexibleContexts GeneralizedNewtypeDeriving ImportQualifiedPost
+        ScopedTypeVariables StandaloneDeriving
+
+    ghc-options:
+        -Wall -Wnoncanonical-monad-instances -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wredundant-constraints -Widentities
+        -Wunused-packages -Wmissing-deriving-strategies
+
+    build-depends:
+        base,
+        directory,
+        filepath,
+        lens,
+        megaparsec,
+        plutus-core,
+        plutus-metatheory,
+        tasty,
+        tasty-expected-failure,
+        tasty-golden,
+        text,
+        transformers,
+        witherable
+
+executable test-utils
+    main-is:            Spec.hs
+    hs-source-dirs:     executables/test-utils/
+    default-language:   Haskell2010
+    default-extensions:
+        DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+        DeriveTraversable DerivingStrategies DerivingVia ExplicitForAll
+        FlexibleContexts GeneralizedNewtypeDeriving ImportQualifiedPost
+        ScopedTypeVariables StandaloneDeriving
+
+    ghc-options:
+        -Wall -Wnoncanonical-monad-instances -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wredundant-constraints -Widentities
+        -Wunused-packages -Wmissing-deriving-strategies
+
+    build-depends:
+        base >=4.9 && <5,
+        optparse-applicative,
+        plutus-conformance,
+        plutus-core,
+        tasty-golden,
+        text
+
+executable haskell-implementation
+    main-is:            Spec.hs
+    hs-source-dirs:     executables/haskell-implementation
+    default-language:   Haskell2010
+    default-extensions:
+        DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+        DeriveTraversable DerivingStrategies DerivingVia ExplicitForAll
+        FlexibleContexts GeneralizedNewtypeDeriving ImportQualifiedPost
+        ScopedTypeVariables StandaloneDeriving
+
+    ghc-options:
+        -Wall -Wnoncanonical-monad-instances -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wredundant-constraints -Widentities
+        -Wunused-packages -Wmissing-deriving-strategies
+
+    build-depends:      base >=4.9 && <5
+
+test-suite haskell-conformance
+    type:               exitcode-stdio-1.0
+    main-is:            Spec.hs
+    hs-source-dirs:     haskell test-cases
+    default-language:   Haskell2010
+    default-extensions:
+        DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+        DeriveTraversable DerivingStrategies DerivingVia ExplicitForAll
+        FlexibleContexts GeneralizedNewtypeDeriving ImportQualifiedPost
+        ScopedTypeVariables StandaloneDeriving
+
+    ghc-options:
+        -Wall -Wnoncanonical-monad-instances -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wredundant-constraints -Widentities
+        -Wunused-packages -Wmissing-deriving-strategies
+
+    build-depends:
+        base >=4.9 && <5,
+        plutus-conformance
+
+test-suite agda-conformance
+    type:               exitcode-stdio-1.0
+    main-is:            Spec.hs
+    hs-source-dirs:     agda test-cases
+    default-language:   Haskell2010
+    default-extensions:
+        DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+        DeriveTraversable DerivingStrategies DerivingVia ExplicitForAll
+        FlexibleContexts GeneralizedNewtypeDeriving ImportQualifiedPost
+        ScopedTypeVariables StandaloneDeriving
+
+    ghc-options:
+        -Wall -Wnoncanonical-monad-instances -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wredundant-constraints -Widentities
+        -Wunused-packages -Wmissing-deriving-strategies
+
+    build-depends:
+        base >=4.9 && <5,
+        plutus-conformance,
+        plutus-core,
+        plutus-metatheory,
+        transformers
