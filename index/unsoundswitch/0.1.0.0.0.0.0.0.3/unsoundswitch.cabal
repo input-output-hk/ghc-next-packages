@@ -1,0 +1,14 @@
+cabal-version: 2.4
+name:          unsoundswitch
+version:       0.1.0.0.0.0.0.0.3
+maintainer:    operations@iohk.io
+author:        IOHK Engineering Team
+
+executable unsoundswitch
+    main-is:          UnsoundSwitch.hs
+    default-language: Haskell2010
+    ghc-options:      -Wall
+    build-depends:
+        base ^>=4.14.1.0,
+        logfloat,
+        statistics
