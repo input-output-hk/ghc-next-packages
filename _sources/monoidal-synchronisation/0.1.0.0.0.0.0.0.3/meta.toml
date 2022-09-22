@@ -1,0 +1,4 @@
+timestamp = 2022-09-22T11:28:47Z
+url = 'https://github.com/input-output-hk/ouroboros-network/tarball/2146e721a58c0cce241f6e53485d883531764775'
+subdir = './monoidal-synchronisation'
+force-version = true
