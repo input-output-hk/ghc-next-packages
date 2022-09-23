@@ -1,0 +1,4 @@
+timestamp = 2022-09-23T04:41:59Z
+url = 'https://github.com/input-output-hk/ouroboros-network/tarball/473b5db02d0541ed1a84d4413f19a30e0536d6f0'
+subdir = './ouroboros-consensus-cardano-tools'
+force-version = true
