@@ -1,0 +1,77 @@
+cabal-version: >=1.10
+name:          ouroboros-consensus-mock-test
+version:       0.1.0.0.0.0.0.0.4
+license:       Apache-2.0
+license-file:  LICENSE NOTICE
+copyright:     2020 Input Output (Hong Kong) Ltd.
+maintainer:    operations@iohk.io
+author:        IOHK Engineering Team
+synopsis:
+    Tests of the mock ledger integration in the Ouroboros consensus layer
+
+category:      Network
+build-type:    Simple
+
+source-repository head
+    type:     git
+    location: https://github.com/input-output-hk/ouroboros-network
+
+library
+    exposed-modules:
+        Test.Consensus.Ledger.Mock.Generators
+        Test.ThreadNet.TxGen.Mock
+        Test.ThreadNet.Util.HasCreator.Mock
+        Test.ThreadNet.Util.SimpleBlock
+
+    hs-source-dirs:   src
+    default-language: Haskell2010
+    ghc-options:
+        -Wall -Wcompat -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wpartial-fields -Widentities
+        -Wredundant-constraints -Wmissing-export-lists
+        -Wno-unticked-promoted-constructors -fno-ignore-asserts
+
+    build-depends:
+        base >=4.9 && <4.15,
+        bytestring >=0.10 && <0.11,
+        cardano-crypto-class,
+        containers >=0.5 && <0.7,
+        serialise >=0.2 && <0.3,
+        QuickCheck,
+        ouroboros-consensus,
+        ouroboros-consensus-mock,
+        ouroboros-consensus-test
+
+test-suite test
+    type:             exitcode-stdio-1.0
+    main-is:          Main.hs
+    hs-source-dirs:   test
+    other-modules:
+        Test.Consensus.Ledger.Mock
+        Test.ThreadNet.BFT
+        Test.ThreadNet.LeaderSchedule
+        Test.ThreadNet.PBFT
+        Test.ThreadNet.Praos
+
+    default-language: Haskell2010
+    ghc-options:
+        -Wall -Wcompat -Wincomplete-uni-patterns
+        -Wincomplete-record-updates -Wpartial-fields -Widentities
+        -Wredundant-constraints -Wmissing-export-lists -fno-ignore-asserts
+        -threaded -rtsopts
+
+    build-depends:
+        base,
+        bytestring,
+        cardano-slotting,
+        cborg,
+        containers,
+        QuickCheck,
+        serialise,
+        tasty,
+        tasty-quickcheck,
+        ouroboros-network,
+        ouroboros-consensus,
+        ouroboros-consensus-mock,
+        ouroboros-consensus-mock-test,
+        ouroboros-consensus-test
